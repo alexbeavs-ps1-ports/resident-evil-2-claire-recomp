@@ -1,0 +1,119 @@
+<p align="center"><a href="https://alexbeavs-ps1-ports.github.io/psxrecomp-ports/"><img src="https://raw.githubusercontent.com/alexbeavs-ps1-ports/psxrecomp-ports/main/docs/assets/alexbeav-ps1-recomps-banner.png" alt="Alexbeav's PS1 Recomps" width="100%"></a></p>
+
+# Resident Evil 2 (Claire) Recompiled
+
+<!-- retcomm-readme-metrics -->
+[![GitHub downloads (all assets, all releases)](https://img.shields.io/github/downloads/alexbeavs-ps1-ports/resident-evil-2-claire-recomp/total)](https://github.com/alexbeavs-ps1-ports/resident-evil-2-claire-recomp/releases)
+[![GitHub downloads (latest release)](https://img.shields.io/github/downloads/alexbeavs-ps1-ports/resident-evil-2-claire-recomp/latest/total)](https://github.com/alexbeavs-ps1-ports/resident-evil-2-claire-recomp/releases/latest)
+[![GitHub release](https://img.shields.io/github/v/release/alexbeavs-ps1-ports/resident-evil-2-claire-recomp)](https://github.com/alexbeavs-ps1-ports/resident-evil-2-claire-recomp/releases/latest)
+<!-- /retcomm-readme-metrics -->
+
+Static recompilation of **Resident Evil 2** (USA Dual Shock, Claire disc) built on
+[psxrecomp](https://github.com/mstan/psxrecomp) and
+[recomp-ui](https://github.com/mstan/recomp-ui).
+
+_Add a short pitch in catalog_identity.json / README._
+
+| | |
+|---|---|
+| Players | 1 |
+| Region | USA |
+| Publisher | Capcom |
+| Year | 1998 |
+
+Scaffolded with the New Project Layout. See
+`psxrecomp/docs/GAME_PROJECT_SETUP.md` for the full flow.
+
+<!-- release-standard:bios -->
+**BIOS:** SCPH-1001 (USA) retail BIOS, 524288 bytes, SHA-256 `71af94d1e47a68c11e8fdb9f8368040601514a42a5a399cda48c7d3bff1e99d3`. Supply your own dump; releases do not use OpenBIOS.
+<!-- /release-standard:bios -->
+
+## Known issues
+
+- Resident Evil 2 ships as two kits, one per disc: Leon and Claire (this repository).
+  For now they are two separate installations, and memory cards must be copied from
+  one to the other by hand. A future update will support both discs in one
+  installation that shares its memory cards.
+
+<!-- retcomm-readme-launcher -->
+## RetComM Launcher
+
+You can run this title **standalone** (release zip + the built-in recomp-ui
+Generate & Build flow), or manage installs, updates, ROM/BIOS wiring, and queued
+builds more intuitively with
+**[RetComM Launcher](https://github.com/TechnicallyComputers/RetComM-Launcher)** —
+the Retro Compilation Manager hub for self-compiling recomps.
+
+[Downloads](https://github.com/TechnicallyComputers/RetComM-Launcher/releases) ·
+[Full README & features](https://github.com/TechnicallyComputers/RetComM-Launcher#readme)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/TechnicallyComputers/RetComM-Launcher/main/docs/screenshots/hub-and-game-launcher.png" alt="RetComM hub with a background build, next to a title’s recomp-ui launcher" width="720">
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/TechnicallyComputers/RetComM-Launcher/main/docs/screenshots/queue-and-background-build.png" alt="Background cmake build with titles queued" width="720">
+</p>
+
+RetComM checks for updates, rebuilds with existing build data when possible,
+shares the portable toolchain used by per-title launchers, and automates
+BIOS/ROM/save plumbing so you are not stuck repeating each game’s wizard by hand.
+<!-- /retcomm-readme-launcher -->
+
+## Legal
+
+You must own the original game. Disc images under `disc/` are gitignored and
+must never be committed. Retail BIOS dumps are not redistributed. OpenBIOS is not used: first-run
+Generate needs your own legally dumped SCPH-1001 image.
+
+Default app icon: `assets/psxrecomp.ico` (and `.png` / `.svg`) — RetComM-themed controller mark from `psxrecomp/assets/`. Windows builds embed it via `APP_ICON`.
+
+Optional box art under `launcher_assets/img/` may come from
+[libretro-thumbnails](https://github.com/libretro-thumbnails/libretro-thumbnails)
+(`Named_Boxarts`); see `BOXART_SOURCE.txt` when present.
+
+## Quick start (dev)
+
+```bash
+git submodule update --init --recursive
+./psxrecomp/tools/ci/build_emitters.sh
+python3 psxrecomp/psxrecomp_cli.py generate \
+  --config game.toml --project-root . --disc disc/<your>.cue
+cmake -S . -B build-release -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build-release --target psx-runtime
+```
+
+Zip prefix for CI artifacts: `resident-evil-2-claire`.
+
+## Symbols
+
+Progressive map: `symbols.toml` → `python3 tools/sync_symbols.py` →
+`psx_symbols.h` (`PSX_FN_*`). See `psxrecomp/docs/SYMBOLS.md`.
+
+## Framework pins
+
+Submodule gitlinks (`psxrecomp`, optional `recomp-ui`, nested `recomp-net`)
+are authoritative. `framework_pins.txt` is an optional scaffold snapshot;
+release CI logs SHAs with `record_pins.sh` but builds whatever the gitlinks
+resolve to. Bump submodules deliberately — do not float on `main`/`master`
+in release CI.
+
+<!-- retcomm-readme-raid -->
+---
+
+<p align="center">
+  <sub><b>R.A.I.D. — Retro AI Development</b> · a Discord for AI-assisted retro reverse-engineering, decomp &amp; recomp</sub>
+</p>
+
+<p align="center">
+  <a href="https://discord.gg/Ad9BwSzctP"><img src=".github/raid-discord.png" alt="Join the Retro AI Development (R.A.I.D.) Discord" width="200"></a>
+</p>
+<!-- /retcomm-readme-raid -->
+
+## About this project
+
+This hobby project uses substantial AI assistance. Source checks and recorded tests determine which changes are accepted. Game acceptance remains limited to the evidence recorded for each program.
+
+<!-- framework-pin -->
+**Framework:** `psxrecomp` and `recomp-ui` are submodules pinned to pin I 0.1.23 (psxrecomp `578bd3b`, recomp-ui `5302f1f`).
+<!-- /framework-pin -->

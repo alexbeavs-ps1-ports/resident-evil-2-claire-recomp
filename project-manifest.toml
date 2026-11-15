@@ -1,0 +1,44 @@
+[project]
+title = "Resident Evil 2 (USA Dual Shock Claire)"
+region = "USA"
+track = "recompilation"
+status = "source_prepared_unqualified"
+
+[retail_identity]
+disc_count = 1
+serials = ["SLUS-00756"]
+executable_paths = ["SLUS_007.56"]
+executable_sha256 = "1664e7c634f8cfd03e421f10a6d7e8e8e9fa9bc7982f7c649cc86d28a983fbee"
+load_address = "0x80010000"
+entry_point = "0x800783C0"
+program_model = "independent-program"
+
+[retail_identity.set]
+name = "resident-evil-2-dual-shock-usa"
+title = "Resident Evil 2"
+serials = ["SLUS-00748", "SLUS-00756"]
+programs = ["leon", "claire"]
+program = "claire"
+exe_name = "Resident_Evil_2_Claire"
+shortcut = "Resident Evil 2 - Claire"
+
+[bios]
+required = true
+profile = "SCPH1001"
+size = 524288
+sha256 = "71af94d1e47a68c11e8fdb9f8368040601514a42a5a399cda48c7d3bff1e99d3"
+
+[framework]
+name = "PSXRecomp"
+repository = "https://github.com/Alexbeav/psxrecomp.git"
+commit = "578bd3bedd48e2403a5d3de1cdc3eb260065ed7d"
+tree = "a0aa850abb6e2c6c6e9fa19f1c3d9b5446f2f65d"
+recomp_ui_commit = "5302f1fc0823afb1a9c4554036902bb5b48fd896"
+template_commit = "77fc84d18cd341ba0c0feb68a63f0904f8c467f0"
+license = "See the pinned dependency license; this binding does not approve commercial use."
+pin = "pin I 0.1.19"
+
+[release]
+version = "0.1.0"
+private_only = true
+profile_status = "CI training pending"

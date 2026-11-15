@@ -1,0 +1,57 @@
+
+[game]
+name = "Resident Evil 2 (USA Dual Shock Claire)"
+id = "SLUS-00756"
+players = 1
+exe = "disc/SLUS_007.56"
+disc = "disc/Resident Evil 2 - Dual Shock Ver. (USA) (Disc 2).cue"
+discs = ["disc/Resident Evil 2 - Dual Shock Ver. (USA) (Disc 2).cue"]
+disc_serials = ["SLUS-00756"]
+load_address = "0x80010000"
+entry_pc = "0x800783C0"
+text_size = "0x000F0800"
+stack_base = "0x801FFFF0"
+
+[prepare_disc]
+out_dir = "disc"
+bin_name = "Resident Evil 2 - Dual Shock Ver. (USA) (Disc 2) (Track 1).bin"
+cue_name = "Resident Evil 2 - Dual Shock Ver. (USA) (Disc 2).cue"
+boot_exe = "SLUS_007.56"
+known_sizes = [671284320]
+known_md5 = [
+  "8fdd08786af8bca1dcd33b88a432248e",
+]
+known_sha1 = [
+  "945edb866baa827d0d24ee08adbfd7bef76742a6",
+]
+known_crc32 = [
+  "c1f62279",
+]
+
+[recompiler]
+bios_config = "psxrecomp/bios/SCPH1001.toml"
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+openbios = false
+bios_hle = false
+window_title = "Resident Evil 2 (USA Dual Shock Claire) Recompiled"
+memcard_dir = "saves"
+overlay_cache = true
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+
+[netplay]
+require_cue = true
+required_tracks = 2
+required_disc_fp = "80f9f318092b8f4ff841b7f3bd8a318f1d4c96ac0b32eefb4c51777231efcd01"
+
+[pgo]
+enabled = false
