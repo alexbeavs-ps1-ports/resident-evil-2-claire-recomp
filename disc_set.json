@@ -1,0 +1,18 @@
+{
+  "disc_count": 1,
+  "verdict": "single",
+  "differing_program_fields": [],
+  "warnings": [],
+  "discs": [
+    {
+      "index": 1,
+      "cue_name": "Resident Evil 2 - Dual Shock Ver. (USA) (Disc 2).cue",
+      "cue_path": "disc/Resident Evil 2 - Dual Shock Ver. (USA) (Disc 2).cue",
+      "serial": "SLUS-00756",
+      "boot_exe": "SLUS_007.56",
+      "entry_pc": "0x800783C0",
+      "track_count": 2,
+      "required_disc_fp": "80f9f318092b8f4ff841b7f3bd8a318f1d4c96ac0b32eefb4c51777231efcd01"
+    }
+  ]
+}
